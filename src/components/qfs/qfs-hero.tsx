@@ -19,9 +19,24 @@ export function QfsHero() {
       id="inicio"
       className="qfs-grid-bg relative overflow-hidden border-b border-[#101f47]"
     >
-      {/* Portada (banner) — imagen nueva */}
-      <div className="relative mx-auto max-w-7xl px-4 pt-10 sm:px-6 sm:pt-14 lg:px-8">
-        <div className="relative overflow-hidden rounded-2xl border border-[#1b3067]/60 shadow-[0_20px_60px_-20px_rgba(212,175,55,0.35)]">
+      {/* ====== PORTADA INTEGRADA ======
+          Sin borde duro, sin caja rectangular.
+          La imagen se funde con el fondo Quantum Glow mediante
+          un gradient mask en la parte inferior. */}
+      <div className="relative mx-auto max-w-7xl px-4 pt-8 sm:px-6 sm:pt-12 lg:px-8">
+        <div
+          className="relative overflow-hidden rounded-3xl"
+          style={{
+            // Mask para fade-out inferior (de opaco → transparente)
+            WebkitMaskImage:
+              "linear-gradient(180deg, black 0%, black 65%, transparent 100%)",
+            maskImage:
+              "linear-gradient(180deg, black 0%, black 65%, transparent 100%)",
+            // Sombra dorada difuminada que envuelve la portada
+            boxShadow:
+              "0 30px 80px -20px rgba(212, 175, 55, 0.30), 0 0 0 1px rgba(212, 175, 55, 0.10)",
+          }}
+        >
           {/* Imagen portada */}
           <Image
             src="/hero-portada.jpg"
@@ -32,22 +47,33 @@ export function QfsHero() {
             className="h-auto w-full object-cover"
             sizes="(max-width: 768px) 100vw, (max-width: 1280px) 80vw, 1024px"
           />
-          {/* Overlay sutil para integrar con el tema oscuro */}
+
+          {/* Overlay sutil vertical para profundidad */}
           <div
             className="pointer-events-none absolute inset-0"
             style={{
               background:
-                "linear-gradient(180deg, rgba(3,8,22,0.0) 0%, rgba(3,8,22,0.15) 60%, rgba(3,8,22,0.55) 100%)",
+                "linear-gradient(180deg, rgba(3,8,22,0.0) 0%, rgba(3,8,22,0.10) 50%, rgba(3,8,22,0.45) 100%)",
             }}
             aria-hidden
           />
-          {/* Ring dorado interior */}
-          <div className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-inset ring-[#d4af37]/15" aria-hidden />
+        </div>
+
+        {/* Línea conectora dorada que une la portada con el contenido */}
+        <div className="pointer-events-none mx-auto mt-1 flex flex-col items-center">
+          <div
+            className="h-10 w-px"
+            style={{
+              background:
+                "linear-gradient(180deg, rgba(212,175,55,0.7) 0%, rgba(59,130,246,0.4) 100%)",
+            }}
+          />
+          <div className="h-2 w-2 rounded-full bg-[#d4af37] shadow-[0_0_12px_rgba(212,175,55,0.8)]" />
         </div>
       </div>
 
-      {/* Contenido del hero */}
-      <div className="relative mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-16">
+      {/* ====== CONTENIDO DEL HERO ====== */}
+      <div className="relative mx-auto max-w-7xl px-4 pb-16 pt-6 sm:px-6 sm:pb-20 sm:pt-8 lg:px-8">
         <div className="mx-auto max-w-4xl text-center">
           {/* Logo con aura cuántica rotatoria */}
           <div className="mb-7 flex justify-center">
