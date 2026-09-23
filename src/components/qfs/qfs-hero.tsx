@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { ShieldCheck, Layers, Globe2 } from "lucide-react";
+import { ShieldCheck, Layers, Globe2, ArrowRight } from "lucide-react";
 import { useLanguage } from "./language-context";
 
 export function QfsHero() {
@@ -23,16 +23,14 @@ export function QfsHero() {
           Sin borde duro, sin caja rectangular.
           La imagen se funde con el fondo Quantum Glow mediante
           un gradient mask en la parte inferior. */}
-      <div className="relative mx-auto max-w-7xl px-4 pt-8 sm:px-6 sm:pt-12 lg:px-8">
+      <div className="relative mx-auto max-w-7xl px-4 pt-6 sm:px-6 sm:pt-10 lg:px-8">
         <div
           className="relative overflow-hidden rounded-3xl"
           style={{
-            // Mask para fade-out inferior (de opaco → transparente)
             WebkitMaskImage:
-              "linear-gradient(180deg, black 0%, black 65%, transparent 100%)",
+              "linear-gradient(180deg, black 0%, black 60%, transparent 100%)",
             maskImage:
-              "linear-gradient(180deg, black 0%, black 65%, transparent 100%)",
-            // Sombra dorada difuminada que envuelve la portada
+              "linear-gradient(180deg, black 0%, black 60%, transparent 100%)",
             boxShadow:
               "0 30px 80px -20px rgba(212, 175, 55, 0.30), 0 0 0 1px rgba(212, 175, 55, 0.10)",
           }}
@@ -58,98 +56,97 @@ export function QfsHero() {
             aria-hidden
           />
         </div>
-
-        {/* Línea conectora dorada que une la portada con el contenido */}
-        <div className="pointer-events-none mx-auto mt-1 flex flex-col items-center">
-          <div
-            className="h-10 w-px"
-            style={{
-              background:
-                "linear-gradient(180deg, rgba(212,175,55,0.7) 0%, rgba(59,130,246,0.4) 100%)",
-            }}
-          />
-          <div className="h-2 w-2 rounded-full bg-[#d4af37] shadow-[0_0_12px_rgba(212,175,55,0.8)]" />
-        </div>
       </div>
 
-      {/* ====== CONTENIDO DEL HERO ====== */}
-      <div className="relative mx-auto max-w-7xl px-4 pb-16 pt-6 sm:px-6 sm:pb-20 sm:pt-8 lg:px-8">
-        <div className="mx-auto max-w-4xl text-center">
-          {/* Logo con aura cuántica rotatoria */}
-          <div className="mb-7 flex justify-center">
-            <div className="relative grid place-items-center">
-              {/* Aura cuántica rotatoria (detrás) */}
-              <div className="qfs-aura h-28 w-28 sm:h-32 sm:w-32" aria-hidden />
-              {/* Logo */}
-              <div className="relative h-24 w-24 overflow-hidden rounded-2xl ring-2 ring-[#d4af37]/40 shadow-[0_0_60px_-8px_rgba(212,175,55,0.7)] qfs-pulse sm:h-28 sm:w-28 z-10">
-                <Image
-                  src="/qfs-logo.png"
-                  alt="Símbolo Cuántico QFS"
-                  width={112}
-                  height={112}
-                  className="h-full w-full object-cover"
-                  priority
-                />
-              </div>
-            </div>
-          </div>
-
-          {/* Pill */}
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#1b3067] bg-[#040a1c]/70 px-4 py-1.5 text-xs font-medium text-slate-300 backdrop-blur">
-            <span className="relative flex h-2 w-2">
+      {/* ====== CONTENIDO INSTITUCIONAL ======
+          Estructura más profesional: pill → eyebrow → título →
+          subtítulo → divisores finos → CTAs → feature chips → stats.
+          Sin logo (ya está en header y footer). Espaciado generoso
+          tipo landing page corporativa premium. */}
+      <div className="relative mx-auto max-w-5xl px-4 pb-20 pt-10 sm:px-6 sm:pb-24 sm:pt-14 lg:px-8">
+        {/* Pill institucional */}
+        <div className="flex justify-center">
+          <div className="inline-flex items-center gap-2.5 rounded-full border border-[#1b3067] bg-[#040a1c]/70 px-4 py-1.5 text-[11px] font-medium text-slate-300 backdrop-blur-md">
+            <span className="relative flex h-1.5 w-1.5">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400" />
             </span>
-            <span className="tracking-[0.18em] uppercase">{t("hero.pill")}</span>
-          </div>
-
-          <h1 className="text-balance text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
-            ECOSISTEMA <span className="qfs-text-gold">QFS</span>
-          </h1>
-
-          <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-slate-300 sm:text-lg">
-            {t("hero.subtitle")}
-          </p>
-
-          {/* CTAs */}
-          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <a href="#ecosistema" className="qfs-btn-primary">
-              {t("cta.explore")}
-            </a>
-            <a href="#contratos" className="qfs-btn-ghost">
-              {t("cta.viewTable")}
-            </a>
-          </div>
-
-          {/* Feature chips */}
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-            <span className="inline-flex items-center gap-2 rounded-full border border-[#1b3067] bg-[#040a1c]/60 px-3 py-1.5 text-xs text-slate-300">
-              <ShieldCheck className="h-3.5 w-3.5 text-[#d4af37]" />
-              {t("chip.multichain")}
-            </span>
-            <span className="inline-flex items-center gap-2 rounded-full border border-[#1b3067] bg-[#040a1c]/60 px-3 py-1.5 text-xs text-slate-300">
-              <Layers className="h-3.5 w-3.5 text-[#3b82f6]" />
-              {t("chip.verified")}
-            </span>
-            <span className="inline-flex items-center gap-2 rounded-full border border-[#1b3067] bg-[#040a1c]/60 px-3 py-1.5 text-xs text-slate-300">
-              <Globe2 className="h-3.5 w-3.5 text-emerald-400" />
-              {t("chip.institutional")}
-            </span>
+            <span className="tracking-[0.22em] uppercase">{t("hero.pill")}</span>
           </div>
         </div>
 
-        {/* Stats */}
-        <div className="mx-auto mt-14 grid max-w-5xl grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
-          {STATS.map((s) => (
-            <div
-              key={s.label}
-              className="qfs-card p-5 text-center"
-            >
-              <div className="text-3xl font-bold qfs-text-gold">{s.value}</div>
-              <div className="mt-1 text-xs font-semibold uppercase tracking-wider text-slate-200">
+        {/* Título principal — más grande y con mejor jerarquía */}
+        <h1 className="mt-8 text-balance text-center text-4xl font-bold leading-[1.1] tracking-tight text-white sm:text-5xl lg:text-7xl">
+          ECOSISTEMA <span className="qfs-text-gold">QFS</span>
+        </h1>
+
+        {/* Divisor fino dorado — separa título de subtítulo */}
+        <div className="mx-auto mt-8 h-px w-24 bg-gradient-to-r from-transparent via-[#d4af37]/60 to-transparent" />
+
+        {/* Subtítulo */}
+        <p className="mx-auto mt-8 max-w-3xl text-center text-base leading-relaxed text-slate-300 sm:text-lg lg:text-xl">
+          {t("hero.subtitle")}
+        </p>
+
+        {/* CTAs — más espaciados, con hover refinado */}
+        <div className="mt-12 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
+          <a
+            href="#ecosistema"
+            className="group qfs-btn-primary inline-flex items-center gap-2 px-6 py-3 text-sm"
+          >
+            {t("cta.explore")}
+            <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+          </a>
+          <a
+            href="#contratos"
+            className="qfs-btn-ghost inline-flex items-center gap-2 px-6 py-3 text-sm"
+          >
+            {t("cta.viewTable")}
+          </a>
+        </div>
+
+        {/* Feature chips — separados por divisores verticales para look editorial */}
+        <div className="mt-12 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-xs">
+          <span className="inline-flex items-center gap-2 text-slate-300">
+            <ShieldCheck className="h-4 w-4 text-[#d4af37]" />
+            {t("chip.multichain")}
+          </span>
+          <span className="hidden h-3 w-px bg-[#1b3067] sm:inline-block" />
+          <span className="inline-flex items-center gap-2 text-slate-300">
+            <Layers className="h-4 w-4 text-[#3b82f6]" />
+            {t("chip.verified")}
+          </span>
+          <span className="hidden h-3 w-px bg-[#1b3067] sm:inline-block" />
+          <span className="inline-flex items-center gap-2 text-slate-300">
+            <Globe2 className="h-4 w-4 text-emerald-400" />
+            {t("chip.institutional")}
+          </span>
+        </div>
+
+        {/* Divisor antes de stats */}
+        <div className="mx-auto mt-16 h-px w-full max-w-4xl bg-gradient-to-r from-transparent via-[#1b3067] to-transparent" />
+
+        {/* Stats — sin cajas, números grandes con tipografía editorial */}
+        <div className="mx-auto mt-10 grid max-w-4xl grid-cols-2 gap-8 sm:grid-cols-4 sm:gap-4">
+          {STATS.map((s, idx) => (
+            <div key={s.label} className="text-center">
+              <div className="text-4xl font-bold qfs-text-gold sm:text-5xl">
+                {s.value}
+              </div>
+              <div className="mt-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-300">
                 {s.label}
               </div>
-              <div className="text-[11px] text-slate-500">{s.sub}</div>
+              <div className="mt-0.5 text-[10px] text-slate-500">{s.sub}</div>
+              {/* Línea decorativa bajo cada stat */}
+              <div
+                className="mx-auto mt-3 h-0.5 w-8 rounded-full"
+                style={{
+                  background:
+                    idx % 2 === 0
+                      ? "linear-gradient(90deg, transparent, #d4af37, transparent)"
+                      : "linear-gradient(90deg, transparent, #3b82f6, transparent)",
+                }}
+              />
             </div>
           ))}
         </div>
