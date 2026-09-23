@@ -163,7 +163,7 @@ export const ECOSYSTEM_COMPONENTS: EcosystemComponent[] = [
     id: "gcrm",
     index: 4,
     name: "GCRM",
-    concept: "Global Currency Reset Master",
+    concept: "Global Currency Restart Master",
     description:
       "Activo digital conectado al ecosistema QFS, vinculado a la iniciativa de reordenamiento monetario global.",
     icon: Coins,
