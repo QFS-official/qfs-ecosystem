@@ -140,51 +140,86 @@
   --qfs-cyan: #38bdf8;
 }
 
-/* Page-level background matching explorer.qfspay.org */
+/* Page-level background — solid navy base (matches explorer.qfspay.org body)
+   The hero & section elements paint the radial halos themselves, so the body
+   stays clean and doesn't compete with content on long scroll. */
 body {
   background-color: #030816 !important;
   background-image:
-    radial-gradient(900px 320px at 78% -10%, rgba(37, 99, 235, 0.35), rgba(0, 0, 0, 0) 60%),
-    radial-gradient(700px 300px at 96% 90%, rgba(124, 58, 237, 0.22), rgba(0, 0, 0, 0) 60%),
-    linear-gradient(100deg, #050C22 0%, #071233 45%, #0A1A44 100%) !important;
+    radial-gradient(1200px 600px at 12% -10%, rgba(37, 99, 235, 0.10), transparent 60%),
+    radial-gradient(1000px 500px at 88% 110%, rgba(124, 58, 237, 0.08), transparent 60%),
+    linear-gradient(180deg, #030816 0%, #040a1c 100%) !important;
   background-attachment: fixed !important;
   background-repeat: no-repeat !important;
   background-size: cover !important;
+  position: relative;
 }
 
+/* Subtle film grain for premium texture (SVG noise, very faint) */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  mix-blend-mode: overlay;
+}
+
+/* Make sure all content sits above the grain layer */
+body > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Cards — more opaque, premium feel (matches explorer.qfspay.org qfs-card) */
 .qfs-card {
-  background:
-    linear-gradient(180deg, rgba(27, 48, 103, 0.10) 0%, rgba(4, 10, 28, 0.40) 100%),
-    rgba(4, 10, 28, 0.55);
+  background: linear-gradient(180deg, rgba(17, 32, 74, 0.50) 0%, rgba(7, 15, 38, 0.78) 100%);
   border: 1px solid rgba(63, 110, 214, 0.22);
   border-radius: 16px;
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   transition: border-color 250ms ease, transform 250ms ease, box-shadow 250ms ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle inner sheen at the top of cards (premium glass effect) */
+.qfs-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, transparent 30%);
+  border-radius: inherit;
 }
 
 .qfs-card:hover {
-  border-color: rgba(212, 175, 55, 0.45);
+  border-color: rgba(212, 175, 55, 0.50);
   box-shadow:
-    0 0 0 1px rgba(212, 175, 55, 0.15),
-    0 18px 40px -20px rgba(59, 130, 246, 0.35);
-  transform: translateY(-2px);
+    0 0 0 1px rgba(212, 175, 55, 0.18),
+    0 20px 50px -20px rgba(59, 130, 246, 0.40),
+    0 0 30px -10px rgba(212, 175, 55, 0.20);
+  transform: translateY(-3px);
 }
 
 .qfs-card-gold {
-  background:
-    linear-gradient(180deg, rgba(212, 175, 55, 0.10) 0%, rgba(4, 10, 28, 0.40) 100%),
-    rgba(4, 10, 28, 0.55);
-  border: 1px solid rgba(212, 175, 55, 0.30);
+  background: linear-gradient(180deg, rgba(58, 47, 16, 0.55) 0%, rgba(7, 15, 38, 0.78) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.32);
 }
 
 .qfs-card-gold:hover {
-  border-color: rgba(212, 175, 55, 0.65);
+  border-color: rgba(212, 175, 55, 0.70);
   box-shadow:
-    0 0 0 1px rgba(212, 175, 55, 0.25),
-    0 18px 40px -20px rgba(212, 175, 55, 0.40);
+    0 0 0 1px rgba(212, 175, 55, 0.30),
+    0 20px 50px -20px rgba(212, 175, 55, 0.45),
+    0 0 35px -10px rgba(212, 175, 55, 0.30);
 }
 
-/* Hero background — exact gradient from explorer.qfspay.org */
+/* Hero background — exact gradient from explorer.qfspay.org
+   Blue + purple radial halos + diagonal navy gradient.
+   Pseudo-element paints a subtle grid that fades toward edges. */
 .qfs-grid-bg {
   background-image:
     radial-gradient(900px 320px at 78% -10%, rgba(37, 99, 235, 0.35), rgba(0, 0, 0, 0) 60%),
@@ -197,19 +232,31 @@ body {
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(59, 130, 246, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(59, 130, 246, 0.06) 1px, transparent 1px);
+    linear-gradient(rgba(59, 130, 246, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59, 130, 246, 0.07) 1px, transparent 1px);
   background-size: 48px 48px;
   mask-image: radial-gradient(ellipse at center, black 35%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 35%, transparent 80%);
   pointer-events: none;
 }
 
-/* Section background variant for inner sections — slightly lighter overlay */
+/* After-element: golden glow at top-right for hero (premium accent) */
+.qfs-grid-bg::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 60%;
+  height: 50%;
+  background: radial-gradient(circle at 80% 20%, rgba(212, 175, 55, 0.08), transparent 70%);
+  pointer-events: none;
+}
+
+/* Section background variant for inner sections — subtler halos */
 .qfs-section-bg {
   background-image:
-    radial-gradient(700px 280px at 10% 0%, rgba(37, 99, 235, 0.18), rgba(0, 0, 0, 0) 60%),
-    radial-gradient(600px 260px at 100% 100%, rgba(124, 58, 237, 0.14), rgba(0, 0, 0, 0) 60%),
-    linear-gradient(180deg, rgba(5, 12, 34, 0.4) 0%, rgba(3, 8, 22, 0.6) 100%);
+    radial-gradient(700px 280px at 10% 0%, rgba(37, 99, 235, 0.14), rgba(0, 0, 0, 0) 60%),
+    radial-gradient(600px 260px at 100% 100%, rgba(124, 58, 237, 0.10), rgba(0, 0, 0, 0) 60%);
 }
 
 .qfs-text-gold {
@@ -394,3 +441,4 @@ html[dir="rtl"] .qfs-connector::after {
   right: 50%;
   transform: translateX(50%) rotate(45deg);
 }
+/* 1790191672 */
