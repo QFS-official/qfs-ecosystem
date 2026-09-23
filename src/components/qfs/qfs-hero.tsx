@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { ShieldCheck, Layers, Globe2, ArrowRight } from "lucide-react";
 import { useLanguage } from "./language-context";
 
@@ -19,10 +18,9 @@ export function QfsHero() {
       id="inicio"
       className="qfs-grid-bg relative overflow-hidden border-b border-[#101f47]"
     >
-      {/* ====== PORTADA INTEGRADA ======
-          Sin borde duro, sin caja rectangular.
-          La imagen se funde con el fondo Quantum Glow mediante
-          un gradient mask en la parte inferior. */}
+      {/* ====== PORTADA ANIMADA (VIDEO EN BUCLE) ======
+          Video de fondo en bucle con poster mientras carga.
+          Se funde con el fondo Quantum Glow mediante mask gradient. */}
       <div className="relative mx-auto max-w-7xl px-4 pt-6 sm:px-6 sm:pt-10 lg:px-8">
         <div
           className="relative overflow-hidden rounded-3xl"
@@ -35,16 +33,19 @@ export function QfsHero() {
               "0 30px 80px -20px rgba(212, 175, 55, 0.30), 0 0 0 1px rgba(212, 175, 55, 0.10)",
           }}
         >
-          {/* Imagen portada */}
-          <Image
-            src="/hero-portada.jpg"
-            alt="QFS — Portada institucional del ecosistema cuántico"
-            width={1024}
-            height={413}
-            priority
+          {/* Video portada en bucle (autoplay muted) */}
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            poster="/hero-portada-poster.jpg"
             className="h-auto w-full object-cover"
-            sizes="(max-width: 768px) 100vw, (max-width: 1280px) 80vw, 1024px"
-          />
+            style={{ display: "block" }}
+          >
+            <source src="/hero-portada-video-web.mp4" type="video/mp4" />
+          </video>
 
           {/* Overlay sutil vertical para profundidad */}
           <div
@@ -53,6 +54,12 @@ export function QfsHero() {
               background:
                 "linear-gradient(180deg, rgba(3,8,22,0.0) 0%, rgba(3,8,22,0.10) 50%, rgba(3,8,22,0.45) 100%)",
             }}
+            aria-hidden
+          />
+
+          {/* Ring dorado interior sutil */}
+          <div
+            className="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-inset ring-[#d4af37]/10"
             aria-hidden
           />
         </div>
