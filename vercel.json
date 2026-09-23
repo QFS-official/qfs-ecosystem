@@ -1,0 +1,28 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "nextjs",
+  "regions": ["iad1"],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" }
+      ]
+    },
+    {
+      "source": "/(.*)\\.(png|ico|svg|webp|jpg|jpeg|gif|woff|woff2|ttf|eot)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    }
+  ],
+  "redirects": [
+    { "source": "/ecosistema", "destination": "/#ecosistema", "permanent": false },
+    { "source": "/contratos", "destination": "/#contratos", "permanent": false },
+    { "source": "/arquitectura", "destination": "/#arquitectura", "permanent": false },
+    { "source": "/roadmap", "destination": "/#roadmap", "permanent": false }
+  ]
+}
