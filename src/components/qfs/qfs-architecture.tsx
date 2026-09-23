@@ -80,7 +80,7 @@ export function QfsArchitecture() {
   return (
     <section
       id="arquitectura"
-      className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20"
+      className="qfs-section-bg relative mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20"
     >
       <div className="mb-10 text-center">
         <span className="qfs-pill">

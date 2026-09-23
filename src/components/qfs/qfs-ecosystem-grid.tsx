@@ -7,7 +7,7 @@ export function QfsEcosystemGrid() {
   return (
     <section
       id="ecosistema"
-      className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20"
+      className="qfs-section-bg relative mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20"
     >
       {/* Section header */}
       <div className="mb-10 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">

@@ -122,16 +122,34 @@
 }
 
 /* ===== QFS ECOSYSTEM — Premium Fintech / Quantum Theme ===== */
+/* Background palette extracted from explorer.qfspay.org */
 :root {
   --qfs-bg: #030816;
   --qfs-bg-soft: #040a1c;
+  --qfs-bg-deep: #050C22;
+  --qfs-bg-mid: #071233;
+  --qfs-bg-high: #0A1A44;
   --qfs-border: #1b3067;
   --qfs-border-soft: #16295c;
   --qfs-blue: #3b82f6;
   --qfs-blue-deep: #1e3a8a;
+  --qfs-blue-glow: rgba(37, 99, 235, 0.35);
+  --qfs-purple-glow: rgba(124, 58, 237, 0.22);
   --qfs-gold: #d4af37;
   --qfs-gold-soft: #f0d77a;
   --qfs-cyan: #38bdf8;
+}
+
+/* Page-level background matching explorer.qfspay.org */
+body {
+  background-color: #030816 !important;
+  background-image:
+    radial-gradient(900px 320px at 78% -10%, rgba(37, 99, 235, 0.35), rgba(0, 0, 0, 0) 60%),
+    radial-gradient(700px 300px at 96% 90%, rgba(124, 58, 237, 0.22), rgba(0, 0, 0, 0) 60%),
+    linear-gradient(100deg, #050C22 0%, #071233 45%, #0A1A44 100%) !important;
+  background-attachment: fixed !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
 }
 
 .qfs-card {
@@ -166,11 +184,12 @@
     0 18px 40px -20px rgba(212, 175, 55, 0.40);
 }
 
+/* Hero background — exact gradient from explorer.qfspay.org */
 .qfs-grid-bg {
   background-image:
-    radial-gradient(circle at 20% 0%, rgba(59, 130, 246, 0.18) 0%, transparent 45%),
-    radial-gradient(circle at 80% 10%, rgba(212, 175, 55, 0.10) 0%, transparent 40%),
-    linear-gradient(180deg, rgba(4, 10, 28, 0.6) 0%, rgba(3, 8, 22, 0.9) 100%);
+    radial-gradient(900px 320px at 78% -10%, rgba(37, 99, 235, 0.35), rgba(0, 0, 0, 0) 60%),
+    radial-gradient(700px 300px at 96% 90%, rgba(124, 58, 237, 0.22), rgba(0, 0, 0, 0) 60%),
+    linear-gradient(100deg, #050C22 0%, #071233 45%, #0A1A44 100%);
 }
 
 .qfs-grid-bg::before {
@@ -183,6 +202,14 @@
   background-size: 48px 48px;
   mask-image: radial-gradient(ellipse at center, black 35%, transparent 80%);
   pointer-events: none;
+}
+
+/* Section background variant for inner sections — slightly lighter overlay */
+.qfs-section-bg {
+  background-image:
+    radial-gradient(700px 280px at 10% 0%, rgba(37, 99, 235, 0.18), rgba(0, 0, 0, 0) 60%),
+    radial-gradient(600px 260px at 100% 100%, rgba(124, 58, 237, 0.14), rgba(0, 0, 0, 0) 60%),
+    linear-gradient(180deg, rgba(5, 12, 34, 0.4) 0%, rgba(3, 8, 22, 0.6) 100%);
 }
 
 .qfs-text-gold {

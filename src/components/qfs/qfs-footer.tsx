@@ -4,7 +4,7 @@ import { Atom, ShieldCheck, Globe2, ExternalLink } from "lucide-react";
 
 export function QfsFooter() {
   return (
-    <footer className="mt-auto border-t border-[#101f47] bg-[#040a1c]">
+    <footer className="mt-auto border-t border-[#101f47] bg-gradient-to-b from-[#040a1c]/60 to-[#030816]">
       <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
           {/* Brand */}

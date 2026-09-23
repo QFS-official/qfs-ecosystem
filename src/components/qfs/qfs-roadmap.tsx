@@ -86,7 +86,7 @@ export function QfsRoadmap() {
   return (
     <section
       id="roadmap"
-      className="relative border-t border-[#101f47] bg-[#040a1c]/40"
+      className="relative border-t border-[#101f47] bg-[#040a1c]/30 backdrop-blur-sm"
     >
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
         <div className="mb-10">
