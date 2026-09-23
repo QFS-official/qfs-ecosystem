@@ -19,7 +19,35 @@ export function QfsHero() {
       id="inicio"
       className="qfs-grid-bg relative overflow-hidden border-b border-[#101f47]"
     >
-      <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
+      {/* Portada (banner) — imagen nueva */}
+      <div className="relative mx-auto max-w-7xl px-4 pt-10 sm:px-6 sm:pt-14 lg:px-8">
+        <div className="relative overflow-hidden rounded-2xl border border-[#1b3067]/60 shadow-[0_20px_60px_-20px_rgba(212,175,55,0.35)]">
+          {/* Imagen portada */}
+          <Image
+            src="/hero-portada.jpg"
+            alt="QFS — Portada institucional del ecosistema cuántico"
+            width={1024}
+            height={413}
+            priority
+            className="h-auto w-full object-cover"
+            sizes="(max-width: 768px) 100vw, (max-width: 1280px) 80vw, 1024px"
+          />
+          {/* Overlay sutil para integrar con el tema oscuro */}
+          <div
+            className="pointer-events-none absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(180deg, rgba(3,8,22,0.0) 0%, rgba(3,8,22,0.15) 60%, rgba(3,8,22,0.55) 100%)",
+            }}
+            aria-hidden
+          />
+          {/* Ring dorado interior */}
+          <div className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-inset ring-[#d4af37]/15" aria-hidden />
+        </div>
+      </div>
+
+      {/* Contenido del hero */}
+      <div className="relative mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-16">
         <div className="mx-auto max-w-4xl text-center">
           {/* Logo con aura cuántica rotatoria */}
           <div className="mb-7 flex justify-center">
