@@ -217,39 +217,106 @@ body > * {
     0 0 35px -10px rgba(212, 175, 55, 0.30);
 }
 
-/* Hero background — exact gradient from explorer.qfspay.org
-   Blue + purple radial halos + diagonal navy gradient.
-   Pseudo-element paints a subtle grid that fades toward edges. */
+/* ===== HERO: QUANTUM GLOW =====
+   Halos radiales intensos (azul + púrpura + dorado) sobre gradiente
+   diagonal dramático. Pseudo-elementos aportan:
+   - ::before = grid cuántico sutil + halo dorado central pulsante
+   - ::after  = estrellas/partículas doradas flotantes
+   La aura cuántica detrás del logo se pinta con .qfs-aura */
 .qfs-grid-bg {
   background-image:
-    radial-gradient(900px 320px at 78% -10%, rgba(37, 99, 235, 0.35), rgba(0, 0, 0, 0) 60%),
-    radial-gradient(700px 300px at 96% 90%, rgba(124, 58, 237, 0.22), rgba(0, 0, 0, 0) 60%),
-    linear-gradient(100deg, #050C22 0%, #071233 45%, #0A1A44 100%);
+    /* Halo azul intenso arriba-derecha (más concentrado que antes) */
+    radial-gradient(900px 380px at 78% -10%, rgba(37, 99, 235, 0.55), rgba(0, 0, 0, 0) 60%),
+    /* Halo púrpura intenso abajo-derecha */
+    radial-gradient(800px 360px at 96% 90%, rgba(124, 58, 237, 0.32), rgba(0, 0, 0, 0) 60%),
+    /* Halo dorado nuevo arriba-izquierda (acentúa el logo) */
+    radial-gradient(600px 300px at 12% 5%, rgba(212, 175, 55, 0.18), rgba(0, 0, 0, 0) 55%),
+    /* Halo cian nuevo abajo-izquierda */
+    radial-gradient(500px 280px at 8% 95%, rgba(56, 189, 248, 0.14), rgba(0, 0, 0, 0) 60%),
+    /* Gradiente diagonal dramático (más oscuro arriba para contraste) */
+    linear-gradient(135deg, #02040d 0%, #050C22 30%, #071233 60%, #0A1A44 100%);
 }
 
+/* Grid cuántico + halo dorado central pulsante (detrás del logo) */
 .qfs-grid-bg::before {
   content: "";
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(59, 130, 246, 0.07) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(59, 130, 246, 0.07) 1px, transparent 1px);
-  background-size: 48px 48px;
-  mask-image: radial-gradient(ellipse at center, black 35%, transparent 80%);
-  -webkit-mask-image: radial-gradient(ellipse at center, black 35%, transparent 80%);
+    /* Grid */
+    linear-gradient(rgba(59, 130, 246, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59, 130, 246, 0.08) 1px, transparent 1px),
+    /* Halo dorado central pulsante (resalta el logo) */
+    radial-gradient(circle at 50% 28%, rgba(212, 175, 55, 0.22), transparent 35%);
+  background-size: 48px 48px, 48px 48px, 100% 100%;
+  mask-image: radial-gradient(ellipse at center, black 35%, transparent 85%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 35%, transparent 85%);
   pointer-events: none;
+  animation: qfs-halo-pulse 4.5s ease-in-out infinite;
 }
 
-/* After-element: golden glow at top-right for hero (premium accent) */
+/* Estrellas / partículas doradas flotantes */
 .qfs-grid-bg::after {
   content: "";
   position: absolute;
-  top: 0;
-  right: 0;
-  width: 60%;
-  height: 50%;
-  background: radial-gradient(circle at 80% 20%, rgba(212, 175, 55, 0.08), transparent 70%);
+  inset: 0;
   pointer-events: none;
+  background-image:
+    radial-gradient(1.5px 1.5px at 12% 18%,  rgba(240, 215, 122, 0.9), transparent),
+    radial-gradient(1.5px 1.5px at 28% 62%,  rgba(212, 175, 55, 0.7), transparent),
+    radial-gradient(2px   2px   at 45% 12%,  rgba(240, 215, 122, 0.8), transparent),
+    radial-gradient(1px   1px   at 62% 78%,  rgba(212, 175, 55, 0.6), transparent),
+    radial-gradient(1.5px 1.5px at 78% 24%,  rgba(240, 215, 122, 0.85), transparent),
+    radial-gradient(1px   1px   at 88% 56%,  rgba(212, 175, 55, 0.6), transparent),
+    radial-gradient(2px   2px   at 22% 88%,  rgba(240, 215, 122, 0.7), transparent),
+    radial-gradient(1px   1px   at 38% 42%,  rgba(212, 175, 55, 0.55), transparent),
+    radial-gradient(1.5px 1.5px at 70% 12%,  rgba(240, 215, 122, 0.75), transparent),
+    radial-gradient(1px   1px   at 92% 78%,  rgba(212, 175, 55, 0.55), transparent),
+    radial-gradient(1.5px 1.5px at 8%  48%,  rgba(240, 215, 122, 0.65), transparent),
+    radial-gradient(1px   1px   at 55% 88%,  rgba(212, 175, 55, 0.5), transparent);
+  background-repeat: no-repeat;
+  animation: qfs-twinkle 6s ease-in-out infinite;
+}
+
+/* Aura cuántica detrás del logo (anillo rotatorio) */
+.qfs-aura {
+  position: absolute;
+  inset: -20px;
+  border-radius: 50%;
+  background:
+    conic-gradient(from 0deg,
+      transparent 0deg,
+      rgba(212, 175, 55, 0.5) 60deg,
+      rgba(59, 130, 246, 0.5) 180deg,
+      rgba(124, 58, 237, 0.4) 300deg,
+      transparent 360deg);
+  filter: blur(18px);
+  opacity: 0.85;
+  animation: qfs-spin 8s linear infinite;
+  z-index: 0;
+}
+
+.qfs-aura::after {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(3, 8, 22, 0.9) 50%, transparent 70%);
+}
+
+@keyframes qfs-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes qfs-halo-pulse {
+  0%, 100% { opacity: 0.7; }
+  50%      { opacity: 1; }
+}
+
+@keyframes qfs-twinkle {
+  0%, 100% { opacity: 0.6; }
+  50%      { opacity: 1; }
 }
 
 /* Section background variant for inner sections — subtler halos */
