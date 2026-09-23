@@ -52,3 +52,20 @@ prompt
 server.log
 # Skills directory
 /skills/
+# === QFS Ecosystem - Limpieza adicional ===
+# Capturas de pantalla temporales (preview-*.png)
+preview-*.png
+reference-site.png
+
+# Scripts de generación (mantener el de favicons)
+scripts/keep-dev-alive.sh
+
+# Database local
+db/*.db
+db/*.db-journal
+
+# Uploads
+upload/
+
+# Logs
+*.log
