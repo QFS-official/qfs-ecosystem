@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { ShieldCheck, Layers, Globe2 } from "lucide-react";
 import { useLanguage } from "./language-context";
 
@@ -20,6 +21,20 @@ export function QfsHero() {
     >
       <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
         <div className="mx-auto max-w-4xl text-center">
+          {/* Logo */}
+          <div className="mb-7 flex justify-center">
+            <div className="relative h-24 w-24 overflow-hidden rounded-2xl ring-2 ring-[#3b82f6]/30 shadow-[0_0_40px_-8px_rgba(212,175,55,0.55)] qfs-pulse sm:h-28 sm:w-28">
+              <Image
+                src="/qfs-logo.png"
+                alt="Símbolo Cuántico QFS"
+                width={112}
+                height={112}
+                className="h-full w-full object-cover"
+                priority
+              />
+            </div>
+          </div>
+
           {/* Pill */}
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#1b3067] bg-[#040a1c]/70 px-4 py-1.5 text-xs font-medium text-slate-300 backdrop-blur">
             <span className="relative flex h-2 w-2">

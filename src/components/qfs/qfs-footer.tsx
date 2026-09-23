@@ -1,6 +1,7 @@
 "use client";
 
-import { Atom, ShieldCheck, Globe2, ExternalLink } from "lucide-react";
+import Image from "next/image";
+import { ShieldCheck, Globe2, ExternalLink } from "lucide-react";
 import { useLanguage } from "./language-context";
 
 export function QfsFooter() {
@@ -13,8 +14,14 @@ export function QfsFooter() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-3">
-              <div className="grid h-9 w-9 place-items-center rounded-lg border border-[#1b3067] bg-gradient-to-br from-[#0a1840] to-[#040a1c]">
-                <Atom className="h-4 w-4 text-[#d4af37]" strokeWidth={1.8} />
+              <div className="relative h-9 w-9 overflow-hidden rounded-lg ring-1 ring-inset ring-[#3b82f6]/30">
+                <Image
+                  src="/qfs-logo.png"
+                  alt="QFS Quantum Logo"
+                  width={36}
+                  height={36}
+                  className="h-full w-full object-cover"
+                />
               </div>
               <div>
                 <div className="text-sm font-bold text-white">

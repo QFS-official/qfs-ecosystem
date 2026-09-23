@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Menu, X, Atom, ExternalLink } from "lucide-react";
+import Image from "next/image";
+import { Menu, X, ExternalLink } from "lucide-react";
 import { useLanguage } from "./language-context";
 import { LanguageSwitcher } from "./language-switcher";
 
@@ -36,12 +37,15 @@ export function QfsHeader() {
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Brand */}
         <a href="#inicio" className="flex shrink-0 items-center gap-3">
-          <div className="relative grid h-10 w-10 place-items-center rounded-xl border border-[#1b3067] bg-gradient-to-br from-[#0a1840] to-[#040a1c]">
-            <Atom
-              className="h-5 w-5 text-[#d4af37] qfs-pulse"
-              strokeWidth={1.8}
+          <div className="relative h-10 w-10 overflow-hidden rounded-xl ring-1 ring-inset ring-[#3b82f6]/30">
+            <Image
+              src="/qfs-logo.png"
+              alt="QFS Quantum Logo"
+              width={40}
+              height={40}
+              className="h-full w-full object-cover"
+              priority
             />
-            <span className="absolute inset-0 rounded-xl ring-1 ring-inset ring-[#3b82f6]/20" />
           </div>
           <div className="flex flex-col leading-tight">
             <span className="text-[15px] font-bold tracking-tight text-white">
