@@ -11,10 +11,10 @@ import {
 import {
   type EcosystemComponent,
   NETWORKS,
-  STATUS_META,
   shortAddress,
 } from "./data";
 import { toast } from "sonner";
+import { useLanguage } from "./language-context";
 
 interface Props {
   component: EcosystemComponent;
@@ -22,8 +22,29 @@ interface Props {
 
 export function QfsComponentCard({ component }: Props) {
   const [copied, setCopied] = useState<string | null>(null);
+  const { t } = useLanguage();
   const Icon = component.icon;
-  const status = STATUS_META[component.status];
+
+  const STATUS_LABELS: Record<string, string> = {
+    live: t("status.live"),
+    development: t("status.development"),
+    integration: t("status.integration"),
+    future: t("status.future"),
+  };
+
+  const STATUS_PILLS: Record<string, string> = {
+    live: "qfs-pill",
+    development: "qfs-pill-dev",
+    integration: "qfs-pill-dev",
+    future: "qfs-pill-future",
+  };
+
+  const STATUS_DOTS: Record<string, string> = {
+    live: "bg-emerald-400",
+    development: "bg-amber-400",
+    integration: "bg-amber-400",
+    future: "bg-purple-400",
+  };
 
   const variantClass =
     component.variant === "gold"
@@ -46,12 +67,12 @@ export function QfsComponentCard({ component }: Props) {
     try {
       await navigator.clipboard.writeText(addr);
       setCopied(addr);
-      toast.success("Contrato copiado", {
+      toast.success(t("toast.copied.title"), {
         description: shortAddress(addr),
       });
       setTimeout(() => setCopied(null), 2000);
     } catch {
-      toast.error("No se pudo copiar el contrato");
+      toast.error(t("toast.copy.error"));
     }
   };
 
@@ -85,11 +106,11 @@ export function QfsComponentCard({ component }: Props) {
         </div>
 
         {/* Status pill */}
-        <span className={`${status.pillClass} shrink-0`}>
+        <span className={`${STATUS_PILLS[component.status]} shrink-0`}>
           <span
-            className={`h-1.5 w-1.5 rounded-full ${status.dotClass}`}
+            className={`h-1.5 w-1.5 rounded-full ${STATUS_DOTS[component.status]}`}
           />
-          {status.label}
+          {STATUS_LABELS[component.status]}
         </span>
       </div>
 
@@ -151,17 +172,17 @@ export function QfsComponentCard({ component }: Props) {
                     type="button"
                     onClick={() => handleCopy(c.address)}
                     className="qfs-btn-ghost w-full"
-                    aria-label={`Copiar contrato de ${component.name} en ${net.name}`}
+                    aria-label={`${t("card.copy")} — ${component.name} · ${net.name}`}
                   >
                     {copied === c.address ? (
                       <>
                         <Check className="h-3.5 w-3.5 text-emerald-400" />
-                        Copiado
+                        {t("card.copied")}
                       </>
                     ) : (
                       <>
                         <Copy className="h-3.5 w-3.5" />
-                        Copy Contract
+                        {t("card.copy")}
                       </>
                     )}
                   </button>
@@ -172,7 +193,7 @@ export function QfsComponentCard({ component }: Props) {
                     className="qfs-btn-primary w-full"
                   >
                     <ExternalLink className="h-3.5 w-3.5" />
-                    View on Explorer
+                    {t("card.explorer")}
                   </a>
                 </div>
               </div>
@@ -183,12 +204,9 @@ export function QfsComponentCard({ component }: Props) {
         <div className="rounded-xl border border-dashed border-[#16295c] bg-[#040a1c]/40 px-4 py-5 text-center">
           <AlertCircle className="mx-auto h-5 w-5 text-slate-500" />
           <p className="mt-2 text-xs text-slate-400">
-            {component.status === "development" &&
-              "Componente en desarrollo. Contrato no publicado."}
-            {component.status === "integration" &&
-              "Integración en curso. El contrato se publicará al disponerse de la dirección oficial."}
-            {component.status === "future" &&
-              "Etapa prevista. Sin contrato publicado."}
+            {component.status === "development" && t("card.dev.empty")}
+            {component.status === "integration" && t("card.integration.empty")}
+            {component.status === "future" && t("card.future.empty")}
           </p>
         </div>
       )}
@@ -199,7 +217,7 @@ export function QfsComponentCard({ component }: Props) {
           href={`#${component.id}`}
           className="inline-flex items-center gap-1 text-[11px] font-medium uppercase tracking-wider text-slate-500 hover:text-[#d4af37]"
         >
-          Componente {String(component.index).padStart(2, "0")}
+          {t("card.component")} {String(component.index).padStart(2, "0")}
           <ArrowRight className="h-3 w-3" />
         </a>
       </div>

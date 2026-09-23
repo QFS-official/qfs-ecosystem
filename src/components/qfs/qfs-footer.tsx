@@ -1,8 +1,11 @@
 "use client";
 
 import { Atom, ShieldCheck, Globe2, ExternalLink } from "lucide-react";
+import { useLanguage } from "./language-context";
 
 export function QfsFooter() {
+  const { t } = useLanguage();
+
   return (
     <footer className="mt-auto border-t border-[#101f47] bg-gradient-to-b from-[#040a1c]/60 to-[#030816]">
       <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
@@ -18,19 +21,17 @@ export function QfsFooter() {
                   QFS<span className="qfs-text-gold">pay</span>
                 </div>
                 <div className="text-[10px] uppercase tracking-wider text-slate-500">
-                  Ecosistema QFS
+                  {t("brand.suffix")}
                 </div>
               </div>
             </div>
             <p className="mt-4 max-w-sm text-xs leading-relaxed text-slate-400">
-              Sección institucional del ecosistema QFS. Información didáctica,
-              corta y profesional sobre cada componente, su red y su contrato
-              inteligente.
+              {t("footer.brandDesc")}
             </p>
             <div className="mt-4 flex flex-wrap gap-2">
               <span className="inline-flex items-center gap-1.5 rounded-md border border-[#16295c] bg-[#040a1c]/60 px-2.5 py-1 text-[10px] text-slate-400">
                 <ShieldCheck className="h-3 w-3 text-emerald-400" />
-                Multichain
+                {t("chip.multichain")}
               </span>
               <span className="inline-flex items-center gap-1.5 rounded-md border border-[#16295c] bg-[#040a1c]/60 px-2.5 py-1 text-[10px] text-slate-400">
                 <Globe2 className="h-3 w-3 text-[#3b82f6]" />
@@ -42,7 +43,7 @@ export function QfsFooter() {
           {/* Links */}
           <div className="md:justify-self-center">
             <h4 className="text-xs font-bold uppercase tracking-wider text-slate-300">
-              Ecosistema
+              {t("footer.ecosystem")}
             </h4>
             <ul className="mt-3 space-y-2 text-sm">
               {[
@@ -69,7 +70,7 @@ export function QfsFooter() {
           {/* External */}
           <div className="md:justify-self-end">
             <h4 className="text-xs font-bold uppercase tracking-wider text-slate-300">
-              Recursos
+              {t("footer.resources")}
             </h4>
             <ul className="mt-3 space-y-2 text-sm">
               <li>
@@ -124,13 +125,9 @@ export function QfsFooter() {
 
         <div className="flex flex-col items-center justify-between gap-3 text-xs text-slate-500 sm:flex-row">
           <p>
-            © {new Date().getFullYear()} QFSpay — Ecosistema QFS. Sección
-            institucional.
+            © {new Date().getFullYear()} {t("footer.copyright")}
           </p>
-          <p className="text-[11px]">
-            Esta página es informativa. Verifica siempre los contratos en el
-            explorador oficial antes de operar.
-          </p>
+          <p className="text-[11px]">{t("footer.disclaimer")}</p>
         </div>
       </div>
     </footer>

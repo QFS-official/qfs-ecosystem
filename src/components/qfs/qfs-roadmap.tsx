@@ -11,6 +11,7 @@ import {
   Circle,
   Clock,
 } from "lucide-react";
+import { useLanguage } from "./language-context";
 
 interface Step {
   icon: React.ElementType;
@@ -19,70 +20,79 @@ interface Step {
   state: "done" | "current" | "future";
 }
 
-const STEPS: Step[] = [
-  {
-    icon: Coins,
-    title: "GCRM · AlArab · TRAEX",
-    desc: "Activos conectados al ecosistema QFS.",
-    state: "current",
-  },
-  {
-    icon: Layers3,
-    title: "Integración de activos",
-    desc: "Cohesión técnica y operativa entre los activos y la infraestructura.",
-    state: "current",
-  },
-  {
-    icon: Landmark,
-    title: "Banco Cuántico QFS",
-    desc: "Registro y establecimiento institucional en Medio Oriente.",
-    state: "future",
-  },
-  {
-    icon: Wallet,
-    title: "Servicios financieros QFS",
-    desc: "Operación financiera integral bajo el ecosistema.",
-    state: "future",
-  },
-  {
-    icon: Boxes,
-    title: "QFS Blockchain",
-    desc: "Migración a infraestructura propia.",
-    state: "future",
-  },
-  {
-    icon: CreditCard,
-    title: "Tarjeta Cuántica QFS",
-    desc: "Servicio previsto tras el cumplimiento de las condiciones necesarias.",
-    state: "future",
-  },
-];
-
-const STATE_META = {
-  done: {
-    icon: CheckCircle2,
-    color: "text-emerald-400",
-    ring: "border-emerald-500/40 bg-emerald-500/5",
-    label: "Completado",
-    labelColor: "text-emerald-400",
-  },
-  current: {
-    icon: Circle,
-    color: "text-[#d4af37]",
-    ring: "border-[#d4af37]/40 bg-[#d4af37]/5",
-    label: "En curso",
-    labelColor: "text-[#d4af37]",
-  },
-  future: {
-    icon: Clock,
-    color: "text-slate-500",
-    ring: "border-[#16295c] bg-[#040a1c]/40",
-    label: "Previsto",
-    labelColor: "text-slate-400",
-  },
-};
-
 export function QfsRoadmap() {
+  const { t } = useLanguage();
+
+  const STEPS: Step[] = [
+    {
+      icon: Coins,
+      title: "GCRM · AlArab · TRAEX",
+      desc: t("node.assets.sub"),
+      state: "current",
+    },
+    {
+      icon: Layers3,
+      title: t("conn.integrates"),
+      desc: t("section.components.desc").split(".")[1] || t("conn.integrates"),
+      state: "current",
+    },
+    {
+      icon: Landmark,
+      title: "Banco Cuántico QFS",
+      desc: t("node.bank.sub"),
+      state: "future",
+    },
+    {
+      icon: Wallet,
+      title: t("node.qfspay.sub"),
+      desc: t("node.qfspay.sub"),
+      state: "future",
+    },
+    {
+      icon: Boxes,
+      title: "QFS Blockchain",
+      desc: t("node.qfsblockchain.sub"),
+      state: "future",
+    },
+    {
+      icon: CreditCard,
+      title: "Tarjeta Cuántica QFS",
+      desc: t("node.card.sub"),
+      state: "future",
+    },
+  ];
+
+  // Use a cleaner description for each step
+  const STEP_DESCS = [
+    t("node.assets.sub"),
+    t("conn.integrates") + " — " + t("section.components.title"),
+    t("node.bank.sub"),
+    t("node.qfspay.sub"),
+    t("node.qfsblockchain.sub"),
+    t("node.card.sub"),
+  ];
+
+  const STATE_META = {
+    done: {
+      icon: CheckCircle2,
+      color: "text-emerald-400",
+      ring: "border-emerald-500/40 bg-emerald-500/5",
+      label: t("step.state.done"),
+    },
+    current: {
+      icon: Circle,
+      color: "text-[#d4af37]",
+      ring: "border-[#d4af37]/40 bg-[#d4af37]/5",
+      label: t("step.state.current"),
+    },
+    future: {
+      icon: Clock,
+      color: "text-slate-500",
+      ring: "border-[#16295c] bg-[#040a1c]/40",
+      label: t("step.state.future"),
+    },
+  };
+
   return (
     <section
       id="roadmap"
@@ -92,16 +102,16 @@ export function QfsRoadmap() {
         <div className="mb-10">
           <span className="qfs-pill">
             <span className="h-1.5 w-1.5 rounded-full bg-[#3b82f6]" />
-            Sección 04
+            {t("section.04")}
           </span>
           <h2 className="mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            Secuencia de <span className="qfs-text-gold">liberación</span>
+            {t("section.roadmap.title").split(" ").slice(0, -1).join(" ")}{" "}
+            <span className="qfs-text-gold">
+              {t("section.roadmap.title").split(" ").slice(-1)}
+            </span>
           </h2>
           <p className="mt-2 max-w-2xl text-sm text-slate-400">
-            La Tarjeta Cuántica QFS está prevista para una etapa posterior al
-            establecimiento del Banco Cuántico QFS en Medio Oriente y al
-            cumplimiento de las condiciones necesarias para la liberación e
-            integración de los activos contemplados en la iniciativa.
+            {t("section.roadmap.desc")}
           </p>
         </div>
 
@@ -147,13 +157,13 @@ export function QfsRoadmap() {
                         <div className="flex items-center gap-2.5">
                           <div className="grid h-9 w-9 place-items-center rounded-lg border border-[#16295c] bg-[#040a1c]/60">
                             <Icon
-                              className={`h-4.5 w-4.5 ${meta.color}`}
+                              className={`h-4 w-4 ${meta.color}`}
                               strokeWidth={1.7}
                             />
                           </div>
                           <div>
                             <div className="text-[10px] font-bold uppercase tracking-wider text-slate-500">
-                              Paso {String(i + 1).padStart(2, "0")}
+                              {t("step.label")} {String(i + 1).padStart(2, "0")}
                             </div>
                             <h3 className="text-sm font-bold text-white">
                               {step.title}
@@ -161,13 +171,13 @@ export function QfsRoadmap() {
                           </div>
                         </div>
                         <span
-                          className={`text-[10px] font-semibold uppercase tracking-wider ${meta.labelColor}`}
+                          className={`text-[10px] font-semibold uppercase tracking-wider ${meta.color}`}
                         >
                           {meta.label}
                         </span>
                       </div>
                       <p className="mt-3 text-xs leading-relaxed text-slate-300">
-                        {step.desc}
+                        {STEP_DESCS[i]}
                       </p>
                     </div>
                   </div>

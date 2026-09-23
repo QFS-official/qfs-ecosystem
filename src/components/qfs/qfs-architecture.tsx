@@ -8,8 +8,8 @@ import {
   Landmark,
   Boxes,
   CreditCard,
-  ChevronDown,
 } from "lucide-react";
+import { useLanguage } from "./language-context";
 
 interface NodeProps {
   icon: React.ElementType;
@@ -77,6 +77,8 @@ function Connector({ label }: { label?: string }) {
 }
 
 export function QfsArchitecture() {
+  const { t } = useLanguage();
+
   return (
     <section
       id="arquitectura"
@@ -85,15 +87,16 @@ export function QfsArchitecture() {
       <div className="mb-10 text-center">
         <span className="qfs-pill">
           <span className="h-1.5 w-1.5 rounded-full bg-[#a855f7]" />
-          Sección 03
+          {t("section.03")}
         </span>
         <h2 className="mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl">
-          Resumen <span className="qfs-text-gold">visual</span>
+          {t("section.arch.title").split(" ").slice(0, -1).join(" ")}{" "}
+          <span className="qfs-text-gold">
+            {t("section.arch.title").split(" ").slice(-1)}
+          </span>
         </h2>
         <p className="mx-auto mt-2 max-w-2xl text-sm text-slate-400">
-          Arquitectura del ecosistema QFS: cómo se relacionan los activos, la
-          infraestructura, los servicios financieros y las etapas institucionales
-          previstas.
+          {t("section.arch.desc")}
         </p>
       </div>
 
@@ -103,62 +106,62 @@ export function QfsArchitecture() {
           <ArchNode
             icon={Network}
             title="NESG"
-            subtitle="Legal · Corporativo · Financiero · Activos"
+            subtitle={t("node.nesg.sub")}
             variant="blue"
           />
 
-          <Connector label="Capa institucional" />
+          <Connector label={t("conn.institutional")} />
 
           <ArchNode
             icon={Atom}
             title="QFS"
-            subtitle="Sistema e infraestructura"
+            subtitle={t("node.qfs.sub")}
             variant="blue"
           />
 
-          <Connector label="Conecta" />
+          <Connector label={t("conn.connects")} />
 
           <ArchNode
             icon={Wallet}
             title="QFSpay"
-            subtitle="Servicios financieros"
+            subtitle={t("node.qfspay.sub")}
             variant="gold"
           />
 
-          <Connector label="Integra" />
+          <Connector label={t("conn.integrates")} />
 
           <ArchNode
             icon={Coins}
             title="GCRM · AlArab · TRAEX"
-            subtitle="Activos conectados"
+            subtitle={t("node.assets.sub")}
             variant="gold"
             wide
           />
 
-          <Connector label="Etapa institucional" />
+          <Connector label={t("conn.bank")} />
 
           <ArchNode
             icon={Landmark}
             title="Banco Cuántico QFS"
-            subtitle="Medio Oriente — Etapa prevista"
+            subtitle={t("node.bank.sub")}
             variant="purple"
           />
 
-          <Connector label="Infraestructura propia" />
+          <Connector label={t("conn.ownInfra")} />
 
           <ArchNode
             icon={Boxes}
             title="QFS Blockchain"
-            subtitle="Infraestructura propia en desarrollo"
+            subtitle={t("node.qfsblockchain.sub")}
             variant="amber"
           />
 
-          <Connector label="Servicio previsto" />
+          <Connector label={t("conn.finalService")} />
 
           <ArchNode
             icon={CreditCard}
             title="Tarjeta Cuántica QFS"
-            subtitle="Etapa final de la secuencia"
+            subtitle={t("node.card.sub")}
             variant="purple"
           />
         </div>

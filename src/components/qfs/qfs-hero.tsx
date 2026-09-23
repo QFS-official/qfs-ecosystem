@@ -1,15 +1,18 @@
 "use client";
 
 import { ShieldCheck, Layers, Globe2 } from "lucide-react";
-
-const STATS = [
-  { label: "Componentes", value: "9", sub: "Ecosistema QFS" },
-  { label: "Redes", value: "3", sub: "ETH · MATIC · BNB" },
-  { label: "Contratos", value: "8", sub: "Activos publicados" },
-  { label: "En desarrollo", value: "2", sub: "Blockchain · Banco" },
-];
+import { useLanguage } from "./language-context";
 
 export function QfsHero() {
+  const { t } = useLanguage();
+
+  const STATS = [
+    { label: t("stat.components"), value: "9", sub: t("stat.ecosystemSub") },
+    { label: t("stat.networks"), value: "3", sub: "ETH · MATIC · BNB" },
+    { label: t("stat.contracts"), value: "8", sub: t("stat.contracts") },
+    { label: t("stat.dev"), value: "2", sub: t("stat.devSub") },
+  ];
+
   return (
     <section
       id="inicio"
@@ -23,7 +26,7 @@ export function QfsHero() {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
             </span>
-            <span className="tracking-[0.18em] uppercase">QFSpay · Sección institucional</span>
+            <span className="tracking-[0.18em] uppercase">{t("hero.pill")}</span>
           </div>
 
           <h1 className="text-balance text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
@@ -31,18 +34,16 @@ export function QfsHero() {
           </h1>
 
           <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-slate-300 sm:text-lg">
-            Infraestructura financiera cuántica, activos digitales y servicios
-            institucionales. Cada componente, su red y su contrato inteligente,
-            explicados de forma clara y profesional.
+            {t("hero.subtitle")}
           </p>
 
           {/* CTAs */}
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <a href="#ecosistema" className="qfs-btn-primary">
-              Explorar componentes
+              {t("cta.explore")}
             </a>
             <a href="#contratos" className="qfs-btn-ghost">
-              Ver tabla de contratos
+              {t("cta.viewTable")}
             </a>
           </div>
 
@@ -50,15 +51,15 @@ export function QfsHero() {
           <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
             <span className="inline-flex items-center gap-2 rounded-full border border-[#1b3067] bg-[#040a1c]/60 px-3 py-1.5 text-xs text-slate-300">
               <ShieldCheck className="h-3.5 w-3.5 text-[#d4af37]" />
-              Multichain
+              {t("chip.multichain")}
             </span>
             <span className="inline-flex items-center gap-2 rounded-full border border-[#1b3067] bg-[#040a1c]/60 px-3 py-1.5 text-xs text-slate-300">
               <Layers className="h-3.5 w-3.5 text-[#3b82f6]" />
-              Contratos verificados
+              {t("chip.verified")}
             </span>
             <span className="inline-flex items-center gap-2 rounded-full border border-[#1b3067] bg-[#040a1c]/60 px-3 py-1.5 text-xs text-slate-300">
               <Globe2 className="h-3.5 w-3.5 text-emerald-400" />
-              Enfoque institucional
+              {t("chip.institutional")}
             </span>
           </div>
         </div>

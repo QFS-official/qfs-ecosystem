@@ -2,16 +2,11 @@
 
 import { useState, useEffect } from "react";
 import { Menu, X, Atom, ExternalLink } from "lucide-react";
-
-const NAV_ITEMS = [
-  { label: "Inicio", href: "#inicio" },
-  { label: "Ecosistema QFS", href: "#ecosistema", active: true },
-  { label: "Contratos", href: "#contratos" },
-  { label: "Arquitectura", href: "#arquitectura" },
-  { label: "Roadmap", href: "#roadmap" },
-];
+import { useLanguage } from "./language-context";
+import { LanguageSwitcher } from "./language-switcher";
 
 export function QfsHeader() {
+  const { t } = useLanguage();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -21,6 +16,14 @@ export function QfsHeader() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const NAV_ITEMS = [
+    { label: t("nav.home"), href: "#inicio" },
+    { label: t("nav.ecosystem"), href: "#ecosistema", active: true },
+    { label: t("nav.contracts"), href: "#contratos" },
+    { label: t("nav.architecture"), href: "#arquitectura" },
+    { label: t("nav.roadmap"), href: "#roadmap" },
+  ];
 
   return (
     <header
@@ -45,7 +48,7 @@ export function QfsHeader() {
               QFS<span className="qfs-text-gold">pay</span>
             </span>
             <span className="text-[10px] font-medium uppercase tracking-[0.18em] text-slate-500">
-              Ecosistema QFS
+              {t("brand.suffix")}
             </span>
           </div>
         </a>
@@ -69,6 +72,7 @@ export function QfsHeader() {
 
         {/* Right actions */}
         <div className="hidden items-center gap-2 lg:flex">
+          <LanguageSwitcher variant="header" />
           <a
             href="https://explorer.qfspay.org"
             target="_blank"
@@ -76,16 +80,16 @@ export function QfsHeader() {
             className="qfs-btn-ghost"
           >
             <ExternalLink className="h-3.5 w-3.5" />
-            Explorer
+            {t("nav.explorer")}
           </a>
           <a href="#ecosistema" className="qfs-btn-primary">
-            Ver ecosistema
+            {t("cta.viewEcosystem")}
           </a>
         </div>
 
         {/* Mobile toggle */}
         <button
-          aria-label="Abrir menú"
+          aria-label="Open menu"
           className="grid h-10 w-10 place-items-center rounded-lg border border-[#1b2f63] text-slate-300 lg:hidden"
           onClick={() => setOpen((v) => !v)}
         >
@@ -111,6 +115,8 @@ export function QfsHeader() {
                 {item.label}
               </a>
             ))}
+            <div className="my-2 qfs-divider" />
+            <LanguageSwitcher variant="mobile" />
             <a
               href="https://explorer.qfspay.org"
               target="_blank"
@@ -118,7 +124,7 @@ export function QfsHeader() {
               className="mt-2 qfs-btn-ghost w-full"
             >
               <ExternalLink className="h-3.5 w-3.5" />
-              QFS Explorer
+              {t("nav.explorer")}
             </a>
           </nav>
         </div>
