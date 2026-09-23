@@ -103,9 +103,10 @@ export function LanguageSwitcher({ variant = "header" }: Props) {
 
       {open && (
         <div
-          className={`absolute top-full z-50 mt-2 min-w-[200px] max-h-80 overflow-y-auto rounded-xl border border-[#1b3067] bg-[#040a1c]/95 p-1.5 shadow-2xl backdrop-blur-xl qfs-scroll ${
+          className={`absolute top-full z-[60] mt-2 min-w-[220px] max-h-80 overflow-y-auto rounded-xl border border-[#1b3067] bg-[#040a1c]/98 p-1.5 shadow-2xl backdrop-blur-xl qfs-scroll ${
             current.rtl ? "left-0" : "right-0"
           }`}
+          style={{ isolation: "isolate" }}
         >
           <div className="px-2 py-1.5 text-[10px] font-bold uppercase tracking-wider text-slate-500">
             {t("lang.switch")}

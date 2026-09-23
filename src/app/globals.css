@@ -173,6 +173,21 @@ body > * {
   z-index: 1;
 }
 
+/* Header siempre por encima del contenido y de los fondos con halos.
+   z-index 1 (default del body > *) no es suficiente porque el hero
+   tiene pseudo-elementos ::before/::after que crean su propio stacking
+   context. Forzamos el header y su dropdown a un nivel muy superior. */
+header.sticky,
+header[class*="sticky"] {
+  z-index: 50 !important;
+  isolation: isolate; /* crea stacking context propio, evita que ::before/::after del hero invadan */
+}
+
+/* El dropdown del LanguageSwitcher también necesita un z superior dentro del header */
+header [class*="absolute top-full"] {
+  z-index: 60 !important;
+}
+
 /* Cards — more opaque, premium feel (matches explorer.qfspay.org qfs-card) */
 .qfs-card {
   background: linear-gradient(180deg, rgba(17, 32, 74, 0.50) 0%, rgba(7, 15, 38, 0.78) 100%);

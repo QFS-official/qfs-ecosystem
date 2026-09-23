@@ -28,11 +28,12 @@ export function QfsHeader() {
 
   return (
     <header
-      className={`sticky top-0 z-40 border-b transition-colors duration-300 ${
+      className={`sticky top-0 z-50 border-b transition-colors duration-300 ${
         scrolled
           ? "border-[#101f47] bg-[#040a1c]/95 backdrop-blur-xl"
           : "border-transparent bg-[#040a1c]/70 backdrop-blur-md"
       }`}
+      style={{ isolation: "isolate" }}
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Brand */}
